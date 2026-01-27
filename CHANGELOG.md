@@ -1,5 +1,14 @@
 # Version History
 
+## 0.0.2.5
+
+* Update depends light-compressor==0.0.2.2
+* Update depends nativelib==0.2.2.6
+* Update depends pgcopylib==0.2.3.3
+* Update depends pgpack==0.3.2.3
+* Change documentation link
+* Change project development status to 4 - Beta
+
 ## 0.0.2.4
 
 * Update depends nativelib==0.2.2.5

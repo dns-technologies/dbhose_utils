@@ -1,4 +1,4 @@
-light-compressor==0.0.2.1
-nativelib==0.2.2.5
-pgcopylib==0.2.3.2
-pgpack==0.3.2.2
+light-compressor==0.0.2.2
+nativelib==0.2.2.6
+pgcopylib==0.2.3.3
+pgpack==0.3.2.3
