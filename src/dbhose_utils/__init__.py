@@ -1,6 +1,9 @@
 """DBHose dumps convertors utility."""
 
-from light_compressor import CompressionMethod
+from light_compressor import (
+    CompressionLevel,
+    CompressionMethod,
+)
 
 from .common import (
     columns_from_metadata,
@@ -18,6 +21,7 @@ from .recovery import dump_recovery
 
 
 __all__ = (
+    "CompressionLevel",
     "CompressionMethod",
     "DumpClass",
     "DumpType",
@@ -30,4 +34,4 @@ __all__ = (
     "pgoid_from_metadata",
 )
 __author__ = "0xMihalich"
-__version__ = "0.0.2.5"
+__version__ = "0.1.0.dev0"

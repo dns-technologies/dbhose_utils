@@ -9,7 +9,9 @@ Dump convertor utility
 Enum for select current compression method
 
 * NONE - without compression
+* GZIP - gzip compression
 * LZ4 - lz4 compression
+* SNAPPY - snappy compression
 * ZSTD - zstd compression
 
 ### DumpType
@@ -66,7 +68,7 @@ from dbhose_utils import dump_convertor
 source = "path_to_source_dump"
 destination = "path_to_output_dump"
 dump_type = "native"  # Native, PGPack or PGCopy output format
-compression_method = "lz4"  # lz4, zstd or none
+compression_method = "lz4"  # gzip, lz4, snappy, zstd or none
 
 dump_convertor(
     source=source,
@@ -117,17 +119,17 @@ dump_recovery(
 From pip
 
 ```bash
-pip install dbhose-utils
+pip install dbhose-utils --extra-index-url https://dns-technologies.github.io/dbhose-dev-pip/simple/
 ```
 
 From local directory
 
 ```bash
-pip install .
+pip install . --index-url https://dns-technologies.github.io/dbhose-dev-pip/simple/
 ```
 
 From git
 
 ```bash
-pip install git+https://github.com/0xMihalich/dbhose_utils
+pip install git+https://github.com/dns-technologies/dbhose_utils --extra-index-url https://dns-technologies.github.io/dbhose-dev-pip/simple/
 ```

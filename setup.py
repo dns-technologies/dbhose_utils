@@ -15,7 +15,7 @@ extensions = [
 
 setup(
     name="dbhose_utils",
-    version="0.0.2.5",
+    version="0.1.0.dev0",
     package_dir={"": "src"},
     ext_modules=cythonize(extensions, language_level="3"),
     py_modules=[

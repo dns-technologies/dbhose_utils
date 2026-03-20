@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dbhose_utils"
-version = "0.0.2.5"
+version = "0.1.0.dev0"
 description = "DBHose dumps convertors utility."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -22,17 +22,17 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-    "light-compressor==0.0.2.2",
-    "nativelib==0.2.2.6",
-    "pgcopylib==0.2.3.3",
-    "pgpack==0.3.2.3",
+    "light-compressor==0.1.0.dev3",
+    "nativelib==0.2.3.dev4",
+    "pgcopylib==0.2.4.dev0",
+    "pgpack==0.3.3.dev1",
 ]
 
 [project.urls]
-Homepage = "https://github.com/0xMihalich/dbhose_utils"
-Documentation = "https://0xmihalich.github.io/dbhose_airflow/functions/dbhose_utils/index.html"
-Repository = "https://github.com/0xMihalich/dbhose_utils"
-Changelog = "https://github.com/0xMihalich/dbhose_utils/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/dns-technologies/dbhose_utils"
+Documentation = "https://dns-technologies.github.io/dbhose_airflow/functions/dbhose_utils/index.html"
+Repository = "https://github.com/dns-technologies/dbhose_utils"
+Changelog = "https://github.com/dns-technologies/dbhose_utils/blob/main/CHANGELOG.md"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

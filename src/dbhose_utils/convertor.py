@@ -30,6 +30,7 @@ from .common import (
     pgoid_from_metadata,
 )
 from .detective import dump_detective as detective
+from .level import LEVEL
 
 
 CHUNK_SIZE = 1_048_576
@@ -66,6 +67,7 @@ def dump_convertor(
     destination: str,
     dump_type: DumpType | str,
     compression_method: CompressionMethod | str = CompressionMethod.NONE,
+    compression_level: int = 0,
 ) -> None:
     """Convert dumps function."""
 
@@ -74,6 +76,9 @@ def dump_convertor(
 
     if compression_method.__class__ is str:
         compression_method = CompressionMethod[compression_method.upper()]
+
+    if not compression_level:
+        compression_level = LEVEL[compression_method]
 
     reader: NativeReader | PGCopyReader | PGPackReader = detective(source)
 
@@ -91,6 +96,7 @@ def dump_convertor(
             writer = define_writer(
                 chunk_fileobj(source_obj),
                 compression_method,
+                compression_level,
             )
 
             with open(destination, "wb") as fileobj:
@@ -101,7 +107,12 @@ def dump_convertor(
             metadata = reader.metadata
             bytes_data = reader.to_bytes()
             fileobj = open(destination, "wb")
-            writer = PGPackWriter(fileobj, metadata, compression_method)
+            writer = PGPackWriter(
+                fileobj,
+                metadata,
+                compression_method,
+                compression_level,
+            )
             writer.from_bytes(bytes_data)
             writer.close()
     else:
@@ -120,11 +131,17 @@ def dump_convertor(
                     for data in define_writer(
                         bytes_data,
                         compression_method,
+                        compression_level,
                     ):
                         fileobj.write(data)
 
             elif dump_type.writer is PGPackWriter:
-                writer = PGPackWriter(fileobj, metadata, compression_method)
+                writer = PGPackWriter(
+                    fileobj,
+                    metadata,
+                    compression_method,
+                    compression_level,
+                )
                 writer.from_rows(dtype_values)
                 writer.close()
         elif reader.__class__ is PGPackReader:
@@ -139,6 +156,7 @@ def dump_convertor(
                 for data in define_writer(
                     bytes_data,
                     compression_method,
+                    compression_level,
                 ):
                     fileobj.write(data)
 

@@ -18,6 +18,7 @@ from pgpack import (
 
 from .common import recover_rows
 from .detective import dump_detective
+from .level import LEVEL
 
 
 def dump_recovery(
@@ -30,7 +31,8 @@ def dump_recovery(
         recovery_path = file_path + ".recovery"
 
     with open(file_path, "rb") as fileobj:
-        compressor_method = auto_detector(fileobj)
+        compression_method = auto_detector(fileobj)
+        compression_level = LEVEL[compression_method]
 
     reader = dump_detective(file_path)
 
@@ -39,6 +41,7 @@ def dump_recovery(
             open(recovery_path, "wb"),
             reader.metadata,
             reader.compression_method,
+            LEVEL[reader.compression_method],
         )
         recovery.from_rows(recover_rows(reader))
         return recovery.close()
@@ -59,8 +62,9 @@ def dump_recovery(
         reader = dump_detective(file_path)
 
     bytes_data = define_writer(
-        bytes_data=recovery.from_rows(recover_rows(reader)),
-        compressor_method=compressor_method,
+        recovery.from_rows(recover_rows(reader)),
+        compression_method,
+        compression_level,
     )
 
     with open(recovery_path, "wb") as fileobj:

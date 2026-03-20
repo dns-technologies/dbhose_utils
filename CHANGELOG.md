@@ -1,5 +1,16 @@
 # Version History
 
+## 0.1.0.dev0
+
+* Developer release (not public to pip)
+* Update depends light-compressor==0.1.0.dev3
+* Update depends nativelib==0.2.3.dev4
+* Update depends pgcopylib==0.2.4.dev0
+* Update depends pgpack==0.3.3.dev1
+* Update README.md
+* Add CompressionLevel to import
+* Add optional compression_level parameter
+
 ## 0.0.2.5
 
 * Update depends light-compressor==0.0.2.2
